@@ -85,18 +85,18 @@ Metabolic flux is predicted using constraint-based modeling with the Human-GEM g
 
 ## Outputs
 
-### Flux Results (`Flux Results/`)
+### Flux Results
 - `flux_results_<dataset>.csv`: Predicted fluxes for all reactions × samples
 - Dimensions: 13,082 reactions × N samples
 - Units: Cubic-root normalized for variance stabilization
 
-### Correlation Results (`results/`)
+### Correlation Results
 - `correlation_results_<cancer_type>.xlsx`: Flux-metabolite correlations
   - Sheet 1 (All): All computed correlations
   - Sheet 2 (Significant): FDR < 0.05 only
 - Columns: Reaction, Metabolite, n, r, p, FDR
 
-### Pathway Analysis (`results/`)
+### Pathway Analysis
 - `subsystem_activity_<cancer_type>.csv`: Pathway-level flux summaries
 - `subsystem_tumor_vs_normal_<cancer_type>.csv`: Differential activity analysis
 - `subsystem_heatmap_<cancer_type>.pdf`: Visualization of pathway activities
