@@ -23,7 +23,7 @@ if (!dir.exists(processedDataDirectory)) {
   dir.create(processedDataDirectory, recursive = TRUE)
 }
 
-#### Download Molecular Data ----
+#### Download Data ----
 # pancancer metabolomics dataset from Zenodo (record 7348648)
 # ~500MB compressed | ~800 metabolites x ~900 samples
 cat("\nDownloading pancancer metabolomics data...\n")
