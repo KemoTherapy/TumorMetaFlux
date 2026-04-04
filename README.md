@@ -25,7 +25,7 @@ The analysis pipeline consists of 7 sequential R scripts:
 
 ### Execution Order
 
-Scripts must be run sequentially as each depends on outputs from previous steps:
+Scripts are intended to run sequentially as each depends on outputs from previous steps:
 
 ```bash
 Rscript 1_InstallMETAFlux.R
