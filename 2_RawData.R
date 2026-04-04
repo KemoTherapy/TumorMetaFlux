@@ -28,7 +28,7 @@ if (!dir.exists(processedDataDirectory)) {
 # ~500MB compressed | ~800 metabolites x ~900 samples
 cat("\nDownloading pancancer metabolomics data...\n")
 
-tempMolecularArchive <- tempfile()
+tempMolecularArchive <- tempfile(fileext = ".tar.gz")
 
 download.file(
   url = "https://zenodo.org/record/7348648/files/pancancer_metabolomics_v.0.3.2.tar.gz?download=1",
@@ -46,7 +46,7 @@ cat("✓ Molecular data downloaded\n")
 # ~200MB compressed
 cat("\nDownloading precalculated data...\n")
 
-tempPrecalcArchive <- tempfile()
+tempPrecalcArchive <- tempfile(fileext = ".tar.gz")
 
 download.file(
   url = "https://zenodo.org/record/7352546/files/data_for_scripts_v0.3.3.tar.gz?download=1",
@@ -67,7 +67,7 @@ downloadedDataSource <- here("data", "raw", "pancancer_metabolomics")
 workingDataDestination <- here("data", "processed", "pancancer_metabolomics")
 
 if (!dir.exists(downloadedDataSource)) {
-  stop("ERROR: Downloaded data not found at expected location")
+  stop("ERROR: Downloaded data not found at expected location: ", downloadedDataSource)
 }
 
 if (!dir.exists(workingDataDestination)) {
@@ -88,6 +88,6 @@ cat("Raw data folders:\n")
 print(list.dirs(rawDataDirectory, recursive = FALSE, full.names = FALSE))
 
 cat("\nProcessed data folders:\n")
-print(list.dirs(workingDataDestination, recursive = FALSE, full.names = FALSE))
+print(list.dirs(processedDataDirectory, recursive = FALSE, full.names = FALSE))
 
 cat("\n✓ Download and setup complete | Total: ~700MB\n")
