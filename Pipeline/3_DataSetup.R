@@ -25,9 +25,9 @@ cat("\nDownloading pancancer metabolomics data...\n")
 tempMolecularArchive <- tempfile()
 
 download.file(
-  url = "https://zenodo.org/record/7348648/files/pancancer_metabolomics_v.0.3.2.tar.gz?download=1",
+  url      = "https://zenodo.org/record/7348648/files/pancancer_metabolomics_v.0.3.2.tar.gz?download=1",
   destfile = tempMolecularArchive,
-  mode = "wb"
+  mode     = "wb"
 )
 
 untar(tarfile = tempMolecularArchive, exdir = rawDataDirectory)
@@ -43,9 +43,9 @@ cat("\nDownloading precalculated data...\n")
 tempPrecalcArchive <- tempfile()
 
 download.file(
-  url = "https://zenodo.org/record/7352546/files/data_for_scripts_v0.3.3.tar.gz?download=1",
+  url      = "https://zenodo.org/record/7352546/files/data_for_scripts_v0.3.3.tar.gz?download=1",
   destfile = tempPrecalcArchive,
-  mode = "wb"
+  mode     = "wb"
 )
 
 untar(tarfile = tempPrecalcArchive, exdir = rawDataDirectory)
