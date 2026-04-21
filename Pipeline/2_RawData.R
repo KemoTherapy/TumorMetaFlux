@@ -11,29 +11,24 @@ library(here)
 # increase timeout for large file downloads (~700MB total)
 options(timeout = 10000)
 
-rawDataDirectory <- here("data", "raw")
+rawDataDirectory       <- here("data", "raw")
 processedDataDirectory <- here("data", "processed")
 
 # create directories if they don't exist
-if (!dir.exists(rawDataDirectory)) {
-  dir.create(rawDataDirectory, recursive = TRUE)
-}
+if (!dir.exists(rawDataDirectory))       dir.create(rawDataDirectory,       recursive = TRUE)
+if (!dir.exists(processedDataDirectory)) dir.create(processedDataDirectory, recursive = TRUE)
 
-if (!dir.exists(processedDataDirectory)) {
-  dir.create(processedDataDirectory, recursive = TRUE)
-}
-
-#### Download Data ----
+#### Download Molecular Data ----
 # pancancer metabolomics dataset from Zenodo (record 7348648)
 # ~500MB compressed | ~800 metabolites x ~900 samples
 cat("\nDownloading pancancer metabolomics data...\n")
 
-tempMolecularArchive <- tempfile(fileext = ".tar.gz")
+tempMolecularArchive <- tempfile()
 
 download.file(
-  url = "https://zenodo.org/record/7348648/files/pancancer_metabolomics_v.0.3.2.tar.gz?download=1",
+  url      = "https://zenodo.org/record/7348648/files/pancancer_metabolomics_v.0.3.2.tar.gz?download=1",
   destfile = tempMolecularArchive,
-  mode = "wb"
+  mode     = "wb"
 )
 
 untar(tarfile = tempMolecularArchive, exdir = rawDataDirectory)
@@ -46,12 +41,12 @@ cat("✓ Molecular data downloaded\n")
 # ~200MB compressed
 cat("\nDownloading precalculated data...\n")
 
-tempPrecalcArchive <- tempfile(fileext = ".tar.gz")
+tempPrecalcArchive <- tempfile()
 
 download.file(
-  url = "https://zenodo.org/record/7352546/files/data_for_scripts_v0.3.3.tar.gz?download=1",
+  url      = "https://zenodo.org/record/7352546/files/data_for_scripts_v0.3.3.tar.gz?download=1",
   destfile = tempPrecalcArchive,
-  mode = "wb"
+  mode     = "wb"
 )
 
 untar(tarfile = tempPrecalcArchive, exdir = rawDataDirectory)
@@ -63,7 +58,7 @@ cat("✓ Precalculated data downloaded\n")
 # keep raw data pristine, work on copies
 cat("\nOrganizing data...\n")
 
-downloadedDataSource <- here("data", "raw", "pancancer_metabolomics")
+downloadedDataSource   <- here("data", "raw",       "pancancer_metabolomics")
 workingDataDestination <- here("data", "processed", "pancancer_metabolomics")
 
 if (!dir.exists(downloadedDataSource)) {
@@ -72,8 +67,8 @@ if (!dir.exists(downloadedDataSource)) {
 
 if (!dir.exists(workingDataDestination)) {
   file.copy(
-    from = downloadedDataSource,
-    to = processedDataDirectory,
+    from      = downloadedDataSource,
+    to        = processedDataDirectory,
     recursive = TRUE,
     overwrite = FALSE
   )
@@ -85,9 +80,9 @@ if (!dir.exists(workingDataDestination)) {
 #### Verify ----
 cat("\n=== Data structure ===\n")
 cat("Raw data folders:\n")
-print(list.dirs(rawDataDirectory, recursive = FALSE, full.names = FALSE))
+print(list.dirs(rawDataDirectory,       recursive = FALSE, full.names = FALSE))
 
 cat("\nProcessed data folders:\n")
-print(list.dirs(processedDataDirectory, recursive = FALSE, full.names = FALSE))
+print(list.dirs(workingDataDestination, recursive = FALSE, full.names = FALSE))
 
 cat("\n✓ Download and setup complete | Total: ~700MB\n")
