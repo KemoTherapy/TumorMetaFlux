@@ -177,9 +177,9 @@ Robinson JL, et al. (2020). An atlas of human metabolism. Science Signaling, 13(
 Huang Y, et al. (2023). Characterizing cancer metabolism from bulk and single-cell RNA-seq data using METAFlux. Nature Communications, 14, 4883.
 
 ## Contributing
-This is currently a private repository. For questions or collaboration inquiries, please contact the repository owner.
+For questions or collaboration inquiries, please contact the repository owner.
 ## License
-Nothing yet....
+MIT License
 
 ## Contact
 
